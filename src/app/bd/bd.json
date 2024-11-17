@@ -1,0 +1,150 @@
+{
+    "categories": [
+      {
+        "id": "cat1",
+        "name": "Dark Chocolate",
+        "imageUrl": "https://example.com/images/dark-category.jpg",
+        "description": "A selection of rich and intense dark chocolates."
+      },
+      {
+        "id": "cat2",
+        "name": "Milk Chocolate",
+        "imageUrl": "https://example.com/images/milk-category.jpg",
+        "description": "Smooth and creamy milk chocolates for all tastes."
+      }
+    ],
+    "users": [
+      {
+        "id": "u1",
+        "firstname": "Alice",
+        "lastname": "Johnson",
+        "email": "alice.johnson@example.com",
+        "password": "hashed_password",
+        "imageUrl": "https://example.com/images/alice.jpg",
+        "role": "customer",
+        "orders": []
+      },
+      {
+        "id": "u2",
+        "firstname": "Bob",
+        "lastname": "Smith",
+        "email": "bob.smith@example.com",
+        "password": "hashed_password",
+        "imageUrl": "https://example.com/images/bob.jpg",
+        "role": "customer",
+        "orders": []
+      }
+    ],
+    "chocolates": [
+      {
+        "id": "ch1",
+        "name": "Classic Dark Chocolate",
+        "type": "Dark",
+        "description": "Premium quality dark chocolate with a smooth finish.",
+        "price": 7.99,
+        "imageUrl": "https://example.com/images/classic-dark.jpg",
+        "availability": true,
+        "reviews": ["r1"],
+        "category": {
+          "id": "cat1",
+          "name": "Dark Chocolate",
+          "imageUrl": "https://example.com/images/dark-category.jpg",
+          "description": "A selection of rich and intense dark chocolates."
+        }
+      },
+      {
+        "id": "ch2",
+        "name": "Smooth Milk Chocolate",
+        "type": "Milk",
+        "description": "A creamy milk chocolate that melts in your mouth.",
+        "price": 5.99,
+        "imageUrl": "https://example.com/images/smooth-milk.jpg",
+        "availability": true,
+        "reviews": [],
+        "category": {
+          "id": "cat2",
+          "name": "Milk Chocolate",
+          "imageUrl": "https://example.com/images/milk-category.jpg",
+          "description": "Smooth and creamy milk chocolates for all tastes."
+        }
+      }
+    ],
+    "reviews": [
+      {
+        "id": "r1",
+        "user": {
+          "id": "u1",
+          "firstname": "Alice",
+          "lastname": "Johnson",
+          "email": "alice.johnson@example.com",
+          "password": "hashed_password",
+          "imageUrl": "https://example.com/images/alice.jpg",
+          "role": "customer",
+          "orders": []
+        },
+        "comment": "The best dark chocolate I've ever had!",
+        "rating": 5
+      }
+    ],
+    "orders": [
+      {
+        "id": "o1",
+        "user": {
+          "id": "u1",
+          "firstname": "Alice",
+          "lastname": "Johnson",
+          "email": "alice.johnson@example.com",
+          "password": "hashed_password",
+          "imageUrl": "https://example.com/images/alice.jpg",
+          "role": "customer",
+          "orders": []
+        },
+        "items": [
+          {
+            "id": "oi1",
+            "chocolate": {
+              "id": "ch1",
+              "name": "Classic Dark Chocolate",
+              "type": "Dark",
+              "description": "Premium quality dark chocolate with a smooth finish.",
+              "price": 7.99,
+              "imageUrl": "https://example.com/images/classic-dark.jpg",
+              "availability": true,
+              "reviews": ["r1"],
+              "category": {
+                "id": "cat1",
+                "name": "Dark Chocolate",
+                "imageUrl": "https://example.com/images/dark-category.jpg",
+                "description": "A selection of rich and intense dark chocolates."
+              }
+            },
+            "quantity": 2
+          },
+          {
+            "id": "oi2",
+            "chocolate": {
+              "id": "ch2",
+              "name": "Smooth Milk Chocolate",
+              "type": "Milk",
+              "description": "A creamy milk chocolate that melts in your mouth.",
+              "price": 5.99,
+              "imageUrl": "https://example.com/images/smooth-milk.jpg",
+              "availability": true,
+              "reviews": [],
+              "category": {
+                "id": "cat2",
+                "name": "Milk Chocolate",
+                "imageUrl": "https://example.com/images/milk-category.jpg",
+                "description": "Smooth and creamy milk chocolates for all tastes."
+              }
+            },
+            "quantity": 3
+          }
+        ],
+        "totalAmount": 15.98,
+        "status": "completed",
+        "date": "2023-11-12T10:30:00Z"
+      }
+    ]
+  }
+  
