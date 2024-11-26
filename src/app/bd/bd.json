@@ -1,150 +1,276 @@
 {
-    "categories": [
-      {
-        "id": "cat1",
-        "name": "Dark Chocolate",
-        "imageUrl": "https://example.com/images/dark-category.jpg",
-        "description": "A selection of rich and intense dark chocolates."
-      },
-      {
-        "id": "cat2",
-        "name": "Milk Chocolate",
-        "imageUrl": "https://example.com/images/milk-category.jpg",
-        "description": "Smooth and creamy milk chocolates for all tastes."
-      }
-    ],
-    "users": [
-      {
-        "id": "u1",
-        "firstname": "Alice",
-        "lastname": "Johnson",
-        "email": "alice.johnson@example.com",
-        "password": "hashed_password",
-        "imageUrl": "https://example.com/images/alice.jpg",
-        "role": "customer",
-        "orders": []
-      },
-      {
-        "id": "u2",
-        "firstname": "Bob",
-        "lastname": "Smith",
-        "email": "bob.smith@example.com",
-        "password": "hashed_password",
-        "imageUrl": "https://example.com/images/bob.jpg",
-        "role": "customer",
-        "orders": []
-      }
-    ],
-    "chocolates": [
-      {
-        "id": "ch1",
-        "name": "Classic Dark Chocolate",
-        "type": "Dark",
-        "description": "Premium quality dark chocolate with a smooth finish.",
-        "price": 7.99,
-        "imageUrl": "https://example.com/images/classic-dark.jpg",
-        "availability": true,
-        "reviews": ["r1"],
-        "category": {
-          "id": "cat1",
-          "name": "Dark Chocolate",
-          "imageUrl": "https://example.com/images/dark-category.jpg",
-          "description": "A selection of rich and intense dark chocolates."
-        }
-      },
-      {
-        "id": "ch2",
-        "name": "Smooth Milk Chocolate",
-        "type": "Milk",
-        "description": "A creamy milk chocolate that melts in your mouth.",
-        "price": 5.99,
-        "imageUrl": "https://example.com/images/smooth-milk.jpg",
-        "availability": true,
-        "reviews": [],
-        "category": {
-          "id": "cat2",
-          "name": "Milk Chocolate",
-          "imageUrl": "https://example.com/images/milk-category.jpg",
-          "description": "Smooth and creamy milk chocolates for all tastes."
-        }
-      }
-    ],
-    "reviews": [
-      {
-        "id": "r1",
-        "user": {
-          "id": "u1",
-          "firstname": "Alice",
-          "lastname": "Johnson",
-          "email": "alice.johnson@example.com",
-          "password": "hashed_password",
-          "imageUrl": "https://example.com/images/alice.jpg",
-          "role": "customer",
-          "orders": []
+  "categories": [
+    {
+      "id": "1",
+      "name": "Choclate Bar",
+      "imageUrl": "/img/chocolateBar.jpg",
+      "description": "Indulge in classic chocolate bars, perfect for satisfying your sweet tooth with rich, creamy flavors in a convenient form. Ideal for everyday enjoyment."
+    },
+    {
+      "id": "2",
+      "name": "Chocolate Box",
+      "imageUrl": "/img/chocolateBox.jpg",
+      "description": "Experience the luxury of assorted chocolates in beautifully crafted boxes, perfect for gifting or special occasions. Delight in a variety of flavors and textures."
+    },
+    {
+      "id": "3",
+      "name": "Snack Chocolate",
+      "imageUrl": "/img/Snack.jpg",
+      "description": "Discover snack-sized chocolates designed for quick bites on the go. Perfect for sharing, snacking, or adding a sweet touch to your day"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "firstname": "emna",
+      "lastname": "makni",
+      "email": "emna.makni@gmail.com",
+      "password": "Emna1234",
+      "imageUrl": "/img/user.png",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "firstname": "nasro",
+      "lastname": "cherni",
+      "email": "nasro.cherni@gmail.com",
+      "password": "Nasro123",
+      "imageUrl": "/img/user.png",
+      "role": "admin"
+    },
+    {
+      "id": "3",
+      "firstname": "louuu",
+      "lastname": "louuu",
+      "email": "louuu@gmail.com",
+      "password": "loulou123",
+      "imageUrl": "/img/user.png",
+      "role": "user"
+    },
+    {
+      "id": "4",
+      "firstname": "Nasreddine",
+      "lastname": "Cherni",
+      "email": "nasro.cherni1919@gmail.com",
+      "password": "nasro1",
+      "imageUrl": "/img/user.png",
+      "role": "user"
+    },
+    {
+      "id": "5",
+      "firstname": "Ryslen",
+      "lastname": "Neji",
+      "email": "rislen@gmail.com",
+      "password": "azerty",
+      "imageUrl": "/img/user.png",
+      "role": "admin"
+    },
+    {
+      "id": "6",
+      "firstname": "Laribi",
+      "lastname": "Youssef",
+      "email": "laaribi@gmail.com",
+      "password": "laaribi",
+      "imageUrl": "/img/user.png",
+      "role": "user"
+    },
+    {
+      "id": "7",
+      "firstname": "Nagui",
+      "lastname": "Neji",
+      "email": "nagui@gmail.com",
+      "password": "nagui1",
+      "imageUrl": "/img/user.png",
+      "role": "user"
+    },
+    {
+      "id": "8",
+      "firstname": "Nasro",
+      "lastname": "Cherni",
+      "email": "nasro@gmail.com",
+      "password": "nasro123",
+      "imageUrl": "/img/user.png",
+      "role": "user"
+    },
+    {
+      "id": "9",
+      "firstname": "Amoun",
+      "lastname": "Makoun",
+      "email": "amoun@gmail.com",
+      "password": "amounM",
+      "imageUrl": "/img/user.png",
+      "role": "user"
+    },
+    {
+      "id": "10",
+      "firstname": "Assoum",
+      "lastname": "Makoun",
+      "email": "assoum@gmail.com",
+      "password": "assoum",
+      "imageUrl": "/img/user.png",
+      "role": "user"
+    },
+    {
+      "id": "11",
+      "firstname": "AMEL",
+      "lastname": "TRIKI",
+      "email": "a@g.coggm",
+      "password": "123456",
+      "imageUrl": "",
+      "role": "user"
+    }
+  ],
+  "chocolates": [
+    {
+      "id": "2",
+      "name": "Caramel  Chocolate",
+      "type": "Milk Chocolate",
+      "description": "Premium quality milk chocolate with a smooth finish  with Caramel.",
+      "price": 10,
+      "imageUrl": "/img/caramel.jpg",
+      "availability": true,
+      "reviews": [],
+      "category": "1"
+    },
+    {
+      "id": "4",
+      "name": "Crunchy Chocolate",
+      "type": "Dark Chocolate",
+      "description": "Premium quality dark chocolate with a smooth finish  with crunch.",
+      "price": 5,
+      "imageUrl": "/img/crunchy.jpg",
+      "availability": true,
+      "reviews": [],
+      "category": "3"
+    },
+    {
+      "id": "5",
+      "name": "Dry Fruits Chocolate",
+      "type": "Dark Chocolate , Milk Chocolate , White Chocolate",
+      "description": "Premium quality dark chocolate with a smooth finish  with dry fruit.",
+      "price": 45,
+      "imageUrl": "/img/dryFruits.jpg",
+      "availability": true,
+      "reviews": [
+        "2"
+      ],
+      "category": "2"
+    },
+    {
+      "id": "6",
+      "name": "Mini Snack Chocolate",
+      "type": "Dark Chocolate",
+      "description": "Premium quality dark chocolate with a smooth finish  with crunch.",
+      "price": 5,
+      "imageUrl": "/img/miniSnack.jpg",
+      "availability": true,
+      "reviews": [],
+      "category": "3"
+    },
+    {
+      "id": "7",
+      "name": "Oreo Chocolate",
+      "type": "milk Chocolate",
+      "description": "Premium quality milk chocolate with a smooth finish  with oreo.",
+      "price": 15,
+      "imageUrl": "/img/oreo.jpg",
+      "availability": true,
+      "reviews": [],
+      "category": "1"
+    },
+    {
+      "id": "8",
+      "name": "Pistachio Chocolate",
+      "type": "milk Chocolate",
+      "description": "Premium quality milk chocolate with a smooth finish  with pistachio.",
+      "price": 15,
+      "imageUrl": "/img/pistachio.jpg",
+      "availability": true,
+      "reviews": [],
+      "category": "1"
+    },
+    {
+      "id": "9",
+      "name": "Small Hearts Chocolate",
+      "type": "Dark Chocolate , Milk Chocolate , White Chocolate",
+      "description": "Premium quality chocolate with a smooth finish  with crunch.",
+      "price": 25,
+      "imageUrl": "/img/smallHearts.jpg",
+      "availability": true,
+      "reviews": [],
+      "category": "2"
+    },
+    {
+      "id": "10",
+      "name": "StrawBerry Chocolate",
+      "type": "milk Chocolate",
+      "description": "Premium quality milk chocolate with a smooth finish  with StrawBerry.",
+      "price": 25,
+      "imageUrl": "/img/strawBerry.jpg",
+      "availability": true,
+      "reviews": [],
+      "category": "2"
+    },
+    {
+      "id": "11",
+      "name": "Benna Box Chocolate",
+      "type": "Dark Chocolate , Milk Chocolate , White Chocolate",
+      "description": "Premium quality chocolate with a smooth finish  with fruit.",
+      "price": 75,
+      "imageUrl": "/img/whiteBox.jpg",
+      "availability": true,
+      "reviews": [
+        "1"
+      ],
+      "category": "2"
+    },
+    {
+      "id": "12",
+      "name": "iset",
+      "type": "white chocolate",
+      "description": "dfghj sdfghjk",
+      "price": 13,
+      "imageUrl": "/img/chocolate.jpg",
+      "availability": "false",
+      "reviews": [],
+      "category": "2"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "message": "i want a grand size of this box",
+      "user": "10",
+      "comment": "so gooooood",
+      "rating": "5"
+    },
+    {
+      "id": "2",
+      "message": "Demande de renseignement",
+      "user": "11",
+      "comment": "Excellent",
+      "rating": "4"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "user": "11",
+      "items": [
+        {
+          "chocolate": "3",
+          "quantity": 5,
+          "totalPrice": 25
         },
-        "comment": "The best dark chocolate I've ever had!",
-        "rating": 5
-      }
-    ],
-    "orders": [
-      {
-        "id": "o1",
-        "user": {
-          "id": "u1",
-          "firstname": "Alice",
-          "lastname": "Johnson",
-          "email": "alice.johnson@example.com",
-          "password": "hashed_password",
-          "imageUrl": "https://example.com/images/alice.jpg",
-          "role": "customer",
-          "orders": []
-        },
-        "items": [
-          {
-            "id": "oi1",
-            "chocolate": {
-              "id": "ch1",
-              "name": "Classic Dark Chocolate",
-              "type": "Dark",
-              "description": "Premium quality dark chocolate with a smooth finish.",
-              "price": 7.99,
-              "imageUrl": "https://example.com/images/classic-dark.jpg",
-              "availability": true,
-              "reviews": ["r1"],
-              "category": {
-                "id": "cat1",
-                "name": "Dark Chocolate",
-                "imageUrl": "https://example.com/images/dark-category.jpg",
-                "description": "A selection of rich and intense dark chocolates."
-              }
-            },
-            "quantity": 2
-          },
-          {
-            "id": "oi2",
-            "chocolate": {
-              "id": "ch2",
-              "name": "Smooth Milk Chocolate",
-              "type": "Milk",
-              "description": "A creamy milk chocolate that melts in your mouth.",
-              "price": 5.99,
-              "imageUrl": "https://example.com/images/smooth-milk.jpg",
-              "availability": true,
-              "reviews": [],
-              "category": {
-                "id": "cat2",
-                "name": "Milk Chocolate",
-                "imageUrl": "https://example.com/images/milk-category.jpg",
-                "description": "Smooth and creamy milk chocolates for all tastes."
-              }
-            },
-            "quantity": 3
-          }
-        ],
-        "totalAmount": 15.98,
-        "status": "completed",
-        "date": "2023-11-12T10:30:00Z"
-      }
-    ]
-  }
-  
+        {
+          "chocolate": "6",
+          "quantity": 4,
+          "totalPrice": 20
+        }
+      ],
+      "totalAmount": 45,
+      "status": "completed",
+      "date": "2024-11-26T14:32:09.920Z"
+    }
+  ]
+}

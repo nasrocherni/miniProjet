@@ -1,0 +1,70 @@
+<div class="container-fluid py-6">
+  <div class="container py-5">
+    <h1 class="mb-4 text-center">Chocolate Shop</h1>
+    <div class="row g-4">
+
+
+      <div class="col-lg-3">
+        <div class="bg-light p-4 rounded shadow-sm">
+          <h4 class="mb-4">Categories</h4>
+          <ul class="list-unstyled fruite-categorie">
+            <li [class.active]="!activeCategoryId" (click)="navigateToCategory(null)" class="mb-2">
+              <a [routerLink]="['/main/shop']" class="d-flex justify-content-between align-items-center">
+                <span>
+                  <i class="fas fa-shopping-basket me-2"></i>All
+                </span>
+                <span>({{ chocolates.length }})</span>
+              </a>
+            </li>
+            @for (item of categorys; track $index) {
+            <li [class.active]="item.id === activeCategoryId" (click)="navigateToCategory(item.id)" class="mb-2">
+              <a [routerLink]="['/main/shop', item.id]" class="d-flex justify-content-between align-items-center">
+                <span>
+                  <i class="fas fa-shopping-basket me-2"></i>{{ item.name }}
+                </span>
+                <span>({{ chocolateCounts[item.id] || 0 }})</span>
+              </a>
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-9">
+
+        <div class="row g-4 justify-content-center mb-5">
+          <div class="col-md-6 col-lg-5">
+            <div class="input-group shadow-sm">
+              <input type="search" class="form-control p-3" placeholder="Search by name"
+                [formControl]="searchControl" />
+              <input type="number" class="form-control p-3" placeholder="Max price" [formControl]="priceControl" />
+              <span class="input-group-text p-3">
+                <i class="fa fa-search"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4 justify-content-center">
+          @for (chocolate of paginatedChocolates; track chocolate.id) {
+            <div class="col-md-6 col-lg-4">
+              <app-chocolate-item [chocolate]="chocolate" (addToCart)="addToShop($event)"></app-chocolate-item>
+            </div>
+          }
+        </div>
+        <div class="pagination d-flex justify-content-center mt-5">
+          <a class="rounded me-1" (click)="goToPage(currentPage - 1)" [class.disabled]="currentPage === 1">
+            &laquo;
+          </a>
+          @for (page of [].constructor(totalPages); track $index) {
+          <a class="rounded me-1" (click)="goToPage($index + 1)" [class.active]="$index + 1 === currentPage">
+            {{ $index + 1 }}
+          </a>
+          }
+          <a class="rounded" (click)="goToPage(currentPage + 1)" [class.disabled]="currentPage === totalPages">
+            &raquo;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

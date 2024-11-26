@@ -1,0 +1,168 @@
+<div class="container-fluid py-5 mb-5 hero-header">
+  <div class="container py-5">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-12 text-center">
+        <h1 class="display-3 text-primary">Welcome Admin!</h1>
+        <p class="text-secondary">Manage users, orders, chocolates, and system metrics at a glance.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid admin-dashboard py-5">
+  <div class="container py-5">
+
+    <div class="row g-4">
+      <div class="col-lg-3">
+        <div class="bg-light rounded p-4 text-center">
+          <h4 class="text-primary mb-3">Total Admins</h4>
+          <h1>{{ admins.length }}</h1>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="bg-light rounded p-4 text-center">
+          <h4 class="text-primary mb-3">Total Users</h4>
+          <h1>{{ users.length }}</h1>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="bg-light rounded p-4 text-center">
+          <h4 class="text-primary mb-3">Pending Orders</h4>
+          <h1>{{ pendingOrders.length }}</h1>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="bg-light rounded p-4 text-center">
+          <h4 class="text-primary mb-3">Available Chocolates</h4>
+          <h1>{{ chocolates.length }}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-lg-12">
+        <h3 class="text-dark mb-4">Admin Contact List</h3>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Admin Name</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (user of admins; track user.id) {
+              <tr>
+                <td>{{ user.firstname }} {{ user.lastname }}</td>
+                <td>{{ user.email }}</td>
+              </tr>
+              }
+              @if (users.length === 0) {
+              <tr>
+                <td colspan="3" class="text-center">No users available</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-lg-12">
+        <h3 class="text-dark mb-4">User Contact List</h3>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (user of users; track user.id) {
+              <tr>
+                <td>{{ user.firstname }} {{ user.lastname }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                  <button class="btn btn-primary btn-sm" (click)="promptMakeAdmin(user)">
+                    Make Admin
+                  </button>
+                </td>
+              </tr>
+              }
+              @if (users.length === 0) {
+              <tr>
+                <td colspan="3" class="text-center">No users available</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-lg-12">
+        <h3 class="text-dark mb-4">Pending Orders</h3>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>User</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (order of pendingOrders; track order.id) {
+              <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ getUserFullName(order.user) }}</td>
+                <td>{{ order.totalAmount}} DT</td>
+                <td>
+                  <span class="badge bg-warning text-dark">{{ order.status }}</span>
+                </td>
+                <td>{{ order.date | date:'short' }}</td>
+                <td>
+                  <button class="btn btn-success btn-sm me-2" (click)="markAsCompleted(order)">
+                    Mark as Completed
+                  </button>
+                </td>
+              </tr>
+              }
+              @if (pendingOrders.length === 0) {
+              <tr>
+                <td colspan="6" class="text-center">No pending orders</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Confirm Action</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to promote <strong>{{ selectedUser?.firstname }} {{ selectedUser?.lastname }}</strong> to
+        Admin?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="makeAdmin(selectedUser)">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

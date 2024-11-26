@@ -1,0 +1,87 @@
+<div class="container-fluid contact py-6">
+  <div class="container py-6">
+    <div class="p-5 bg-light rounded">
+      <div class="row g-4">
+        <div class="col-12">
+          <div class="text-center mx-auto" style="max-width: 700px;">
+            <h1 class="text-primary">Welcome, {{ user?.firstname }}</h1>
+            <p class="mb-4">View and update your account details below</p>
+          </div>
+        </div>
+        <div class="col-lg-6 offset-lg-3">
+          @if (user) {
+          <div>
+            @if (!isEditMode) {<div>
+              <p><strong>First Name:</strong> {{ user.firstname }}</p>
+              <p><strong>Last Name:</strong> {{ user.lastname }}</p>
+              <p><strong>Email:</strong> {{ user.email }}</p>
+              <p><strong>Password:</strong> **********</p>
+              <p><strong>Profile Image:</strong></p>
+              <img [src]="user.imageUrl || 'assets/default-avatar.jpg'" alt="Profile Image"
+                class="img-fluid rounded-circle" style="width: 100px; height: 100px;">
+
+              <button class="btn btn-primary mt-3" (click)="toggleEditMode()">Edit Profile</button>
+            </div>
+            }
+            @else {
+            <div>
+              <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+                <div class="form-group mb-4">
+                  <label for="firstname">First Name</label>
+                  <input type="text" class="w-100 form-control" placeholder="Your First Name"
+                    formControlName="firstname">
+                  @if (accountForm.controls['firstname'].invalid && accountForm.controls['firstname'].dirty) {
+                  <div class="text-danger">
+                    <small>The first character of the first name must be uppercase and at least 3 characters
+                      long.</small>
+                  </div>
+                  }
+
+                </div>
+                <div class="form-group mb-4">
+                  <label for="lastname">Last Name</label>
+                  <input type="text" class="w-100 form-control" placeholder="Your Last Name" formControlName="lastname">
+                  @if (accountForm.controls['lastname'].invalid && accountForm.controls['lastname'].dirty) {
+                  <div class="text-danger">
+                    <small>The first character of the last name must be uppercase and at least 3 characters
+                      long.</small>
+                  </div>
+                  }
+
+                </div>
+                <div class="form-group mb-4">
+                  <label for="email">Email</label>
+                  <input type="email" class="w-100 form-control" placeholder="Your Email" formControlName="email">
+                </div>
+                <div class="form-group mb-4">
+                  <label for="password">Password</label>
+                  <input type="password" class="w-100 form-control" placeholder="Your Password"
+                    formControlName="password">
+                  @if (accountForm.controls['password'].invalid && accountForm.controls['password'].dirty) {
+                  <div class="text-danger">
+                    <small>Password must be at least 6 characters long.</small>
+                  </div>
+                  }
+                </div>
+                <div class="form-group mb-4">
+                  <label for="imageUrl">Profile Image</label>
+                  <input type="text" class="w-100 form-control" [value]="user.imageUrl" formControlName="imageUrl">
+                </div>
+                <button class="w-100 btn btn-primary" type="submit">Save Changes</button>
+                <button class="w-100 btn btn-secondary mt-2" type="button" (click)="onReset()">Reset</button>
+                <button class="w-100 btn btn-outline-danger mt-2" type="button"
+                  (click)="toggleEditMode()">Cancel</button>
+              </form>
+            </div>
+
+            }
+
+
+
+          </div>}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

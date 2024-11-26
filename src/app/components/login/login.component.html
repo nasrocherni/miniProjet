@@ -1,0 +1,58 @@
+<div class="container-fluid contact py-6">
+    <div class="container py-6">
+        <div class="p-5 bg-light rounded">
+            @if (!user) {
+            <div class="row g-4">
+                <div class="col-12">
+
+                    <div class="text-center mx-auto" style="max-width: 700px;">
+                        <h1 class="text-primary">login</h1>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 offset-lg-4">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <input type="email" class="w-100 form-control border-0 py-3 mb-4" placeholder="Your email"
+                            name="email" formControlName="email">
+                        @if (email?.invalid && email?.dirty) {
+                        <div class="alert alert-danger d-flex align-items-center shadow-sm p-3" role="alert"
+                            style="font-size: 0.7rem;">
+                            <i class="bi bi-exclamation-circle-fill me-2"></i>
+                            Please enter a valid email address
+                        </div>}
+
+                        <input type="password" class="w-100 form-control border-0 py-3 mb-4" placeholder="Your password"
+                            name="password" formControlName="password">
+                        @if (password?.invalid && password?.dirty) {
+                        <div class="alert alert-danger d-flex align-items-center shadow-sm p-3" role="alert"
+                            style="font-size: 0.7rem;">
+                            <i class="bi bi-exclamation-circle-fill me-2"></i>
+                            The password must be at least 6 characters long
+                        </div>}
+
+                        <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary"
+                            type="submit">
+                            Submit
+                        </button>
+                        <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary" type="reset"
+                            (click)="onReset()">
+                            reset
+                        </button>
+                    </form>
+                    <p class="mb-4">you dont have account ?<a [routerLink]="['/main/signup']">sign up</a></p>
+                </div>
+            </div>
+            }
+            @else if(user) {
+            <div class="row g-4 ">
+                <div class="col-12">
+
+                    <div class="text-center mx-auto">
+                        <h3 class="text-primary">you are already connected</h3>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>

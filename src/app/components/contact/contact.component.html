@@ -10,40 +10,37 @@
                 </div>
                 <div class="col-lg-7">
                     <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-                        <input type="text" 
-                               class="w-100 form-control border-0 py-3 mb-4" 
-                               placeholder="Your Name" 
-                               formControlName="name">
-                        <input type="email" 
-                               class="w-100 form-control border-0 py-3 mb-4" 
-                               placeholder="Enter Your Email" 
-                               formControlName="email">
-                        <textarea class="w-100 form-control border-0 mb-4" 
-                                  rows="5" cols="10" 
-                                  placeholder="Your Message" 
-                                  formControlName="message"></textarea>
 
-                        <!-- Checkbox to enable review -->
+                        <textarea class="w-100 form-control border-0 mb-4" rows="5" cols="10" placeholder="Your Message"
+                            formControlName="message"></textarea>
+
+                        @if (loggedInUser) {
                         <div class="form-check mb-4">
-                            <input 
-                              class="form-check-input" 
-                              type="checkbox" 
-                              id="enableReview" 
-                              (change)="toggleReview($event)">
+                            <input class="form-check-input" type="checkbox" id="enableReview"
+                                (change)="toggleReview($event)">
                             <label class="form-check-label" for="enableReview">
-                              Leave a review with a star rating
+                                Leave a review with a star rating
                             </label>
-                          </div>
-                          
+                        </div>
 
 
-                        <!-- Review Form (Conditional Rendering) -->
-                        <div *ngIf="enableReview">
+
+                        @if (enableReview) {
+                        <div>
+                            <div class="mb-4">
+                                <label for="chocolate" class="form-label">Choose Chocolate:</label>
+                                <select id="chocolate" class="form-select border-0 py-3" formControlName="chocolate">
+                                    @for (item of chocolates; track item.id) {
+                                    <option [value]="item.id">
+                                        {{ item.name }}
+                                    </option>
+                                    }
+
+                                </select>
+                            </div>
                             <div class="mb-4">
                                 <label for="rating" class="form-label">Star Rating:</label>
-                                <select id="rating" 
-                                        class="form-select border-0 py-3" 
-                                        formControlName="rating">
+                                <select id="rating" class="form-select border-0 py-3" formControlName="rating">
                                     <option value="0">0 - Poor</option>
                                     <option value="1">1 - Very Bad</option>
                                     <option value="2">2 - Bad</option>
@@ -52,14 +49,22 @@
                                     <option value="5">5 - Excellent</option>
                                 </select>
                             </div>
-                            <textarea class="w-100 form-control border-0 mb-4" 
-                                      rows="3" 
-                                      placeholder="Your Review Message" 
-                                      formControlName="reviewMessage"></textarea>
+                            <textarea class="w-100 form-control border-0 mb-4" rows="3"
+                                placeholder="Your Review Message" formControlName="reviewMessage"></textarea>
                         </div>
+                        }
 
-                        <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary" type="submit">
+
+
+                        }
+
+                        <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary"
+                            type="submit">
                             Submit
+                        </button>
+                        <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary" type="reset"
+                            (click)="onReset()">
+                            reset
                         </button>
                     </form>
                 </div>
@@ -68,21 +73,21 @@
                         <i class="fas fa-map-marker-alt fa-2x text-primary me-4"></i>
                         <div>
                             <h4>Address</h4>
-                            <p class="mb-2">123 Street New York. USA</p>
+                            <p class="mb-2">ariana</p>
                         </div>
                     </div>
                     <div class="d-flex p-4 rounded mb-4 bg-white">
                         <i class="fas fa-envelope fa-2x text-primary me-4"></i>
                         <div>
                             <h4>Mail Us</h4>
-                            <p class="mb-2">infoexample.com</p>
+                            <p class="mb-2">choclate.house&#64;gmail.com</p>
                         </div>
                     </div>
                     <div class="d-flex p-4 rounded bg-white">
                         <i class="fa fa-phone-alt fa-2x text-primary me-4"></i>
                         <div>
                             <h4>Telephone</h4>
-                            <p class="mb-2">(+012) 3456 7890</p>
+                            <p class="mb-2">(+216) 99729066</p>
                         </div>
                     </div>
                 </div>

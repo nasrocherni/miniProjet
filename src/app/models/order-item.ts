@@ -2,9 +2,10 @@ import { Chocolate } from "./chocolate";
 
 export class OrderItem {
     constructor(
-        public id:string,
-        public chocolate:Chocolate,
-        public quantity:number
-       ){}
-       
+        // public chocolate:Chocolate | string,
+        public chocolate: any,
+        public quantity: number,
+        public totalPrice: number
+    ) { }
+
 }

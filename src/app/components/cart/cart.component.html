@@ -1,0 +1,110 @@
+<div class="container-fluid py-5">
+    <div class="container py-6">
+        @if (orderItems.length > 0 ) {
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Products</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of orderItems; track $index) {
+                    <tr>
+                        <th scope="row">
+                            <div class="d-flex align-items-center">
+                                <img [src]="getChocolateImage(item)" class="img-fluid me-5 rounded-circle"
+                                    style="width: 80px; height: 80px;" alt="">
+                            </div>
+                        </th>
+                        <td>
+                            <p class="mb-0 mt-4">{{getChocolateName(item)}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{getChocolatePrice(item)}}</p>
+                        </td>
+                        <td>
+                            <div class="input-group quantity mt-4" style="width: 100px;">
+                                <div class="input-group-btn">
+                                    <button (click)="decreaseQuantity(item)"
+                                        class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input type="text" class="form-control form-control-sm text-center border-0"
+                                    [value]="item.quantity">
+                                <div class="input-group-btn">
+                                    <button (click)="increaseQuantity(item)"
+                                        class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{item.totalPrice}}</p>
+                        </td>
+                        <td>
+                            <button (click)="removeItem(item)" class="btn btn-md rounded-circle bg-light border mt-4">
+                                <i class="fa fa-times text-danger"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-8">
+                @if (showAlert) {
+                <div class="alert alert-danger text-center" role="alert">
+                    <h4 class="alert-heading mb-4">You must be logged in!</h4>
+                    <p class="mb-4">Please log in to complete your purchase.</p>
+                    <div>
+                        <a routerLink="/main/login" class="btn btn-primary me-3">Log In</a>
+                        <a routerLink="/main/signup" class="btn btn-secondary">Sign Up</a>
+                    </div>
+                </div>
+                }
+            </div>
+            <div class="col-lg-4">
+                <div class="bg-light rounded">
+                    <div class="p-4">
+                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                    </div>
+                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                        <h5 class="mb-0 ps-4 me-4">Total</h5>
+                        <p class="mb-0 pe-4">{{totalAmount}}</p>
+                    </div>
+                    <button (click)="checkout()"
+                        class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
+                        type="button">Proceed Checkout</button>
+                </div>
+            </div>
+        </div>
+        }
+        @else if (showSuccess) {
+        <div class="alert alert-success text-center mt-5">
+            <h4 class="alert-heading mb-4">Your order is confirmed!</h4>
+            <p class="mb-4">Thank you for your purchase. We will contact you soon.</p>
+            <p class="mb-4"> if you wanna do another order click on </p>
+            <a class="btn btn-primary btn-lg" [routerLink]="['/main/shop']">Go Shopping</a>
+        </div>
+        }
+        @else {
+        <div class="py-6">
+            <div class="alert alert-warning py-5 text-center" role="alert">
+                <h4 class="alert-heading mb-4">Your cart is empty</h4>
+                <p class="mb-4">It seems like you haven't added any items to your cart yet. Start shopping now and fill
+                    your cart with your favorite chocolates!</p>
+                <a class="btn btn-primary btn-lg" [routerLink]="['/main/shop']">Go Shopping</a>
+            </div>
+        </div>
+        }
+    </div>
+</div>

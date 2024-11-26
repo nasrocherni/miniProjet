@@ -1,0 +1,160 @@
+<div class="container-fluid py-5 mt-5">
+    <div class="container py-6">
+        <div class="row g-4 mb-5">
+            <div class="col-lg-8 col-xl-9">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class=" rounded">
+                            <img [src]="chocolate.imageUrl" class="img-fluid border rounded" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4 class="fw-bold mb-4">{{chocolate.name}}</h4>
+                        <p class="mb-3">Category: {{chocolate.category}}</p>
+                        <h5 class="fw-bold mb-3">{{chocolate.price}}dt</h5>
+                        <div class="d-flex mb-4">
+
+                            @for (star of [1, 2, 3, 4, 5]; track $index) {
+                            <i class="fa"
+                                [ngClass]="$index < averageRating ? 'fas fa-star text-primary' : 'fas fa-star'">
+                            </i>
+                            }
+
+                        </div>
+                        @if (chocolate.availability) {
+                        <span class="text-success fw-bold">In Stock</span>
+                        }
+                        @else {
+                        <span class="text-danger fw-bold">Out of Stock</span>
+                        }
+                        <p class="mb-4">description : {{chocolate.description}}</p>
+                        <p class="mb-4">type : {{chocolate.type}}</p>
+                        <button (click)="addToShop(chocolate)"
+                            class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
+                                class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                    </div>
+                    @if(loggedInUser){
+                    <form [formGroup]="reveiwForm" (ngSubmit)="onSubmit()">
+                        <h4 class="mb-5 fw-bold">Leave a Reply</h4>
+                        <div class="row g-4">
+                            <div class="col-lg-12">
+                                <div class="border-bottom rounded my-4">
+                                    <textarea name="" id="" class="form-control border-0" cols="30" rows="8"
+                                        placeholder="Your Message *" spellcheck="false"
+                                        formControlName="message"></textarea>
+                                </div>
+                                @if (message?.invalid && message?.dirty) {
+                                <div class="alert alert-danger d-flex align-items-center shadow-sm p-3 " role="alert"
+                                    style="font-size: 0.7rem;">
+                                    <i class="bi bi-exclamation-circle-fill me-2"></i>
+                                    Please enter a message
+                                </div>
+                                }
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="border-bottom rounded my-4">
+                                    <textarea name="" id="" class="form-control border-0" cols="30" rows="8"
+                                        placeholder="Your Review *" spellcheck="false"
+                                        formControlName="reviewMessage"></textarea>
+                                </div>
+                                @if (reviewMessage?.invalid && reviewMessage?.dirty) {
+                                <div class="alert alert-danger d-flex align-items-center shadow-sm p-3 " role="alert"
+                                    style="font-size: 0.7rem;">
+                                    <i class="bi bi-exclamation-circle-fill me-2"></i>
+                                    Please enter a review message
+                                </div>
+                                }
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="d-flex justify-content-between py-3 mb-5">
+                                    <label for="rating" class="form-label">Star Rating:</label>
+                                    <select id="rating" class="form-select border-0 py-3" formControlName="rating">
+                                        <option value="0">0 - Poor</option>
+                                        <option value="1">1 - Very Bad</option>
+                                        <option value="2">2 - Bad</option>
+                                        <option value="3">3 - Average</option>
+                                        <option value="4">4 - Good</option>
+                                        <option value="5">5 - Excellent</option>
+                                    </select>
+                                    <button type="submit"
+                                        class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post
+                                        Comment</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    }
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-xl-3">
+                <div class="row g-4 fruite">
+                    <div class="col-lg-12">
+                        <div class="input-group w-100 mx-auto d-flex mb-4">
+                            <input type="search" class="form-control p-3" placeholder="keywords"
+                                aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                        <div class="mb-4">
+                            <h4>Categories</h4>
+                            <ul class="list-unstyled fruite-categorie">
+                                <li [class.active]="!activeCategoryId" (click)="navigateToCategory(null)">
+                                    <a [routerLink]="'/shop'">
+                                        <i class="fas fa-shopping-basket"></i>All
+                                    </a>
+                                    <span>({{ chocolates.length }})</span>
+                                </li>
+                                @for (item of categorys; track item.id) {
+                                <li [class.active]="item.id === activeCategoryId" (click)="navigateToCategory(item.id)">
+                                    <a [routerLink]="['/main/shop', item.id]">
+                                        <i class="fas fa-shopping-basket"></i>{{ item.name }}
+                                    </a>
+                                    <span>({{ chocolateCounts[item.id] || 0 }})</span>
+                                </li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid py-5 mt-5">
+            <div class="container py-5">
+                <h1 class="fw-bold mb-4">Related products</h1>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                    @for (item of chocolatesC; track item.id){
+                    <div class="col-md-6 col-lg-3">
+                        <div class="rounded position-relative fruite-item border border-secondary">
+                            <div class="fruite-img">
+                                <a [routerLink]="['/main/shop', item.category, item.id]">
+                                    <img [src]="item.imageUrl" class="img-fluid w-100 rounded-top"
+                                        alt="{{ item.name }}">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <h4>{{ item.name }}</h4>
+                                <p class="text-dark fs-5 fw-bold mb-3">{{ item.price }} DT</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a [routerLink]="['/main/shop', item.category, item.id]"
+                                        class="text-primary text-decoration-none">
+                                        View Details
+                                    </a>
+                                    <button (click)="addToShop(item)"
+                                        class="btn border border-secondary rounded-pill px-3 text-primary">
+                                        <i class="fa fa-shopping-bag me-2"></i> Add to cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

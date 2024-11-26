@@ -1,1 +1,70 @@
 .active{color: var(--bs-primary);}
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+  }
+  
+  /* Dropdown Menu Base Styles */
+  .dropdown-menu {
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Show State */
+  .dropdown-menu.show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Dropdown Items */
+  .dropdown-item {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #495057;
+  }
+  
+  .dropdown-divider {
+    margin: 5px 0;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Logout Button Styling */
+  .dropdown-item button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  
+  .dropdown-item button:hover {
+    color: #dc3545;
+  }
+  
+  /* Trigger Icon Alignment */
+  #userDropdown {
+    padding: 0;
+    line-height: 0;
+    cursor: pointer;
+  }
+  
+  #userDropdown::after {
+    transition: transform 0.2s ease;
+  }
+  
+  .show > #userDropdown::after {
+    transform: rotate(180deg);
+  }
+  

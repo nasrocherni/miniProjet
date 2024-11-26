@@ -1,0 +1,100 @@
+<div class="container-fluid py-5 mt-5">
+  <div class="container py-6">
+    <div class="row g-4 mb-5">
+      <div class="col-lg-6">
+        <div class="col-lg-6">
+          <div class="rounded ">
+            <img [src]="chocolate.imageUrl" class="img-fluid border rounded" alt="{{ chocolate.name }}" />
+          </div>
+          <p class="mt-3">
+            <label for="image" class="fw-semibold">Change Image: </label>
+            <input type="text" [(ngModel)]="chocolate.imageUrl" id="image" class="form-control border-0 d-inline w-auto"
+              value="/img/chocolate.jpg" />
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <h4 class="fw-bold mb-4">
+          <input [(ngModel)]="chocolate.name" class="form-control border-0 fs-4 fw-bold" placeholder="Chocolate Name" />
+        </h4>
+        <p class="mb-3">
+          <span class="fw-semibold">Category: </span>
+          <select [(ngModel)]="chocolate.category" class="form-select border-0 d-inline w-auto" placeholder="Category">
+            @for (category of categorys; track category.id) {
+            <option [value]="category.id">
+              {{ category.name }}
+            </option>
+            }
+          </select>
+        </p>
+        <h5 class="fw-bold mb-3">
+          <span class="fw-semibold">Price: </span>
+          <input [(ngModel)]="chocolate.price" class="form-control border-0 d-inline w-auto" type="number"
+            placeholder="Price (DT)" />dt
+        </h5>
+        <div class="d-flex align-items-center mb-4">
+          @for (star of [1, 2, 3, 4, 5]; track $index) {
+          <i class="fa" [ngClass]="$index < averageRating ? 'fas fa-star text-primary' : 'fas fa-star'">
+          </i>
+          }
+        </div>
+        <p class="mb-3">
+        <p class="mb-3">
+          <span class="fw-semibold">Availability: </span>
+          <button (click)="toggleAvailability()" class="btn btn-sm"
+            [ngClass]="chocolate.availability ? 'btn-success' : 'btn-danger'">
+            {{ chocolate.availability ? 'In Stock' : 'Out of Stock' }}
+          </button>
+        </p>
+        <p class="mb-4">
+          <span class="fw-semibold">Description: </span>
+          <textarea [(ngModel)]="chocolate.description" class="form-control border-0" rows="3"
+            placeholder="Enter chocolate description"></textarea>
+        </p>
+        <p class="mb-4">
+          <span class="fw-semibold">Type:</span>
+          <input [(ngModel)]="chocolate.type" class="form-control border-0 d-inline w-auto" placeholder="Type" />
+        </p>
+        <div class="d-flex gap-3">
+          <button (click)="saveChocolate()" class="btn btn-primary px-4 py-2 rounded-pill text-white">
+            <i class="fa fa-save me-2"></i> Save Changes
+          </button>
+          <button (click)="deleteChocolate(chocolate.id)" class="btn btn-danger px-4 py-2 rounded-pill text-white">
+            <i class="fa fa-trash me-2"></i> Delete Chocolate
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <h1 class="fw-bold mb-4">Reviews</h1>
+      @if (reviews.length > 0) {
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        @for (review of reviews; track review.id) {
+        <div class="col">
+          <div class="card border-secondary shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title text-warning">
+                @for (star of [1, 2, 3, 4, 5]; track $index) {
+                <i class="fa" [ngClass]="$index < review.rating ? 'fa-star' : 'fa-star-o'"></i>
+                }
+              </h5>
+              <p class="card-text">{{ review.comment }}</p>
+              <footer class="blockquote-footer mb-3">
+                By <cite title="User">{{getUserName(review.user)}}</cite>
+              </footer>
+              <button (click)="deleteReview(review.id)" class="btn btn-sm btn-danger">
+                Delete Review
+              </button>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+      } @else {
+      <p class="text-center text-muted">No reviews available for this chocolate.</p>
+      }
+    </div>
+  </div>
+</div>

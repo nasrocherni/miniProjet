@@ -1,0 +1,67 @@
+<div class="container py-5">
+  <h2 class="fw-bold mb-4">Manage Orders</h2>
+
+  <div class="mb-4">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <label for="orderDate" class="form-label">Filter by Date</label>
+        <input type="date" id="orderDate" [(ngModel)]="filterDate" class="form-control" (change)="applyFilters()" />
+      </div>
+
+      <div class="col-md-4">
+        <label for="status" class="form-label">Filter by Status</label>
+        <select id="status" [(ngModel)]="filterStatus" class="form-select" (change)="applyFilters()">
+          <option value="">Select Status</option>
+          <option value="completed">Completed</option>
+          <option value="pending">Pending</option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label for="user" class="form-label">Filter by User</label>
+        <select id="user" [(ngModel)]="filterUser" class="form-select" (change)="applyFilters()">
+          <option value="">Select User</option>
+          @for (user of users; track user.id) {
+          <option [value]="user.id">{{ user.firstname }} {{ user.lastname }}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-primary text-center">
+        <tr>
+          <th>User</th>
+          <th>Order Items</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Total Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of filteredOrders; track order.id) {
+        <tr>
+          <td>{{ getUserName(order.user) }}</td>
+          <td>
+            <ul class="list-unstyled mb-0">
+              @for (item of order.items; track $index) {
+              <li>🍫 <strong>{{ getChocolatName(item.chocolate) }}</strong> - Qty: {{ item.quantity }}</li>
+              }
+            </ul>
+          </td>
+          <td>{{ order.date | date: 'shortDate' }}</td>
+          <td>
+            <span class="badge"
+              [ngClass]="{'bg-success': order.status === 'completed','bg-warning': order.status === 'pending'}">
+              {{ order.status | titlecase }}
+            </span>
+          </td>
+          <td>{{ order.totalAmount }} DT</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

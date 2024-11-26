@@ -1,0 +1,51 @@
+<div class="container-fluid py-6">
+  <div class="container py-6">
+    <h1 class="mb-4">Hello {{ user?.firstname}} {{user?.lastname}}</h1>
+    <h2>Your order history:</h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Order Items</th>
+            <th scope="col">Total Amount</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for ( order of orders ; track order.id) {
+          <tr [ngClass]="{ 'table-success': order.status === 'completed' }">
+            <td>
+              @for (item of order.items; track $index) {
+              <p class="mb-0 mt-4">
+                <a [routerLink]="['/main/shop', item.chocolate.category ,item.chocolate.id]">
+                  {{ item.chocolate.name}}
+                </a>
+
+                - Quantity: {{ item.quantity }}
+              </p>
+              }
+            </td>
+            <td>
+              <p class="mb-0 mt-4">{{ order.totalAmount }}</p>
+            </td>
+            <td>
+              <p class="mb-0 mt-4">{{ order.status }}</p>
+            </td>
+            <td>
+              <p class="mb-0 mt-4">{{ order.date | date: 'shortDate' }}</p>
+            </td>
+            @if (order.status === 'pending') {
+            <td>
+              <button (click)="deleteOrder(order.id)" class="btn btn-danger">
+                Delete
+              </button>
+            </td>
+            }
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
